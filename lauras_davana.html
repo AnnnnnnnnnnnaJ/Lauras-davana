@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <title>Lauras dzimšanas dienas ceļojums 🎁</title>
+  <style>
+    body { font-family: sans-serif; background: #fffaf3; color: #333; text-align: center; padding: 2em; }
+    .question-box { display: none; max-width: 500px; margin: auto; border: 2px solid #ffd700; border-radius: 12px; padding: 1.5em; background: #fff8dc; box-shadow: 0 0 10px #f0e68c; }
+    input[type=text] { padding: 10px; width: 60%; margin-top: 10px; font-size: 16px; }
+    button { margin-top: 10px; padding: 10px 20px; background: #ffd700; border: none; font-size: 16px; border-radius: 8px; cursor: pointer; }
+    #start { display: block; }
+    h1 { color: #d2691e; }
+  </style>
+</head>
+<body>
+  <h1>🎉 Sveika, Laura! 🎉</h1>
+  <p>Laiks atvērt savu dāvanu – ej cauri 3 jautājumiem un atklāj pārsteigumu!</p>
+
+  <div id="start">
+    <button onclick="goTo('q1')">Sākt spēli 🚀</button>
+  </div>
+
+  <div id="q1" class="question-box">
+    <h2>🏐 Kurš ir Tavs stiprākais ierocis volejbola laukumā?</h2>
+    <p>Bloks | Serve | Smaids</p>
+    <input type="text" id="a1">
+    <button onclick="checkAnswer('a1','SMAIDS','q1','q2')">Tālāk ➡️</button>
+  </div>
+
+  <div id="q2" class="question-box">
+    <h2>👵 Cik Tev paliek gadu (demences tests)?</h2>
+    <p>68 | 48 | 28</p>
+    <input type="text" id="a2">
+    <button onclick="checkAnswer('a2','28','q2','q3')">Tālāk ➡️</button>
+  </div>
+
+  <div id="q3" class="question-box">
+    <h2>🎂 Ko Tava Izlase Tev vēl dzimšanas dienā?</h2>
+    <p>Daudz mieriņa | Veselību | Priecīgus piedzīvojumus</p>
+    <input type="text" id="a3">
+    <button onclick="checkAnswerMultiple(['LAIME','MIERIŅŠ','VESELĪBU','PRIEKU'],'a3','q3','gift')">Atklāt dāvanu 🎁</button>
+  </div>
+
+  <div id="gift" class="question-box">
+    <h2>💆‍♀️ Apsveicam, Tu esi pelnījusi atpūtu!</h2>
+    <p>Te ir Tava dāvana: <br><br>
+    <a href="https://www.lieliskadavana.lv/Pdf/FromMsg?key=ECE759CA808D4D9F9B8AB6587D290EE2&utm_source=thank_you_review&utm_medium=email&utm_campaign=thank_review" target="_blank">👉 Atvērt Karību jūras SPA dāvanu karti 👈</a></p>
+  </div>
+
+  <script>
+    function goTo(id) {
+      document.getElementById('start').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function checkAnswer(inputId, correct, current, next) {
+      const value = document.getElementById(inputId).value.trim().toUpperCase();
+      if (value === correct.toUpperCase()) {
+        document.getElementById(current).style.display = 'none';
+        document.getElementById(next).style.display = 'block';
+      } else {
+        alert('Hmm... mēģini vēlreiz!');
+      }
+    }
+
+    function checkAnswerMultiple(validAnswers, inputId, current, next) {
+      const value = document.getElementById(inputId).value.trim().toUpperCase();
+      if (validAnswers.includes(value)) {
+        document.getElementById(current).style.display = 'none';
+        document.getElementById(next).style.display = 'block';
+      } else {
+        alert('Hmm... vai Tu ievadīji ko no vēlējumiem?');
+      }
+    }
+  </script>
+</body>
+</html>
